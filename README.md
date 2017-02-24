@@ -2,6 +2,8 @@
 
 RAP Form built with [Bootstrap 3][bootstrap] components in [React][react].
 
+This is a single-page app that saves form data as it's typed to a MongoDB database.
+
 ## Docs
 
  - Docs would be nice
@@ -17,16 +19,18 @@ RAP Form built with [Bootstrap 3][bootstrap] components in [React][react].
 
 ## Local setup
 
+- Open a terminal (or however you do that kind of thing)
 - Clone or download this repository
-- `cd rap` to change to the front-end folder
-- Install the dependencies with `npm install`
-- Build with `npm run build` (will probably fail)
-- When `npm run build` fails, start the front-end by running `npm start`
-- This should open the front-end app in your browser
-- cd `../mdb` to change to the database client folder
+- `cd mdb` to change to the database client folder
 - Install the dependencies with `npm install`
 - Run the client with `node index.js`
-- The front-end will proxy requests to the db client, eliminating CORS issues
+- Open a new terminal to the aysorap folder
+- `cd rap` to change to the front-end folder
+- Install the dependencies with `npm install`
+- When `npm run build` fails, start the front-end by running `npm start`
+- This should open the front-end app in your browser
+
+- The front-end will proxy requests to the db client API, eliminating CORS issues
 
 ## Contributions
 
