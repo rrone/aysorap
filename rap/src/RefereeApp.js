@@ -310,9 +310,16 @@ class RefereeApp extends Component {
 
 	var Form = React.createFactory(Formatic);
 	var res = Form({"fields" : questions, "config" : config,
-		onChange: function (newValue) {
-			console.log(newValue);
-		}
+                onChange: function (newValue) {
+                        var pdata = { "tab" : "r", "questions" : newValue};
+                        axios.post('/questions', {pdata})
+                        .then(function (response) {
+                                console.log(response);
+                        })
+                        .catch(function (error) {
+                                console.log(error);
+                        });
+                }
 	});
 	return(res);
   }

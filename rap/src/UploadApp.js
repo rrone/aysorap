@@ -10,7 +10,8 @@ onMessage(e) {
         }
     }
     render() {
-        var action = "http://localhost:3000/upload";
+//        var action = "http://localhost:3000/upload";
+	var action = "/upload";
         return (
 <div>
 <div>

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3002/",
+  "homepage": "http://104.131.93.12:3000/",
   "devDependencies": {
     "react-scripts": "0.9.0"
   },
@@ -13,7 +14,8 @@
     "react-addons-css-transition-group": "^15.4.2",
     "react-addons-update": "^15.4.2",
     "react-bootstrap": "^0.30.7",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-scripts": "^0.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
