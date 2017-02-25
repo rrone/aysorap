@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+var axios = require('axios');
+
+
 var Formatic = require('formatic');
 
 class RefereeApp extends Component {
@@ -310,7 +313,7 @@ class RefereeApp extends Component {
 
 	var Form = React.createFactory(Formatic);
 	var res = Form({"fields" : questions, "config" : config,
-                onChange: function (newValue) {
+                onBlur: function (newValue) {
                         var pdata = { "tab" : "r", "questions" : newValue};
                         axios.post('/questions', {pdata})
                         .then(function (response) {

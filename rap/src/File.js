@@ -1,47 +1,91 @@
-import React from 'react';
+import React, {Component} from 'react';
 
+import Upload from 'rc-upload';
+const style = `
+        .rc-upload-disabled {
+           opacity:0.5;
+        `;
 
+class File extends Component {
 
-var File = React.createClass({
-    componentDidMount: function () {
-        this.input = this.refs.input.getDOMNode();
-        this.form = this.refs.form.getDOMNode();
-        window.onmessage = this.props.onMessage;
-    },
-    onClick: function () {
-        this.input.click();
-    },
-    onChange: function () {
-        this.form.submit();
-    },
-    getDefaultProps: function () {
-        return {
-            inputStyle: {
-                visibility: 'hidden',
-                width: '1px'
-            },
-            style: {
-                display: 'inline-block'
-            }
+        constructor(props) {
+                super(props);
+                this.state = {};
         }
-    },
-    render: function () {
-        return (
-            <div onClick={this.onClick} style={this.props.style}>
-                {this.props.children}
-                <form
-                    encType="multipart/form-data"
-                    action={this.props.action}
-                    method="post"
-                    target="file_upload"
-                    ref="form"
-                    >
-                    <input type="file" name="file" style={this.props.inputStyle} ref='input' onChange={this.onChange}/>
-                </form>
-                <iframe name="file_upload" style={{display:'none'}}></iframe>
-            </div>
-        )
+
+
+  getInitialState() {
+    this.uploaderProps = {
+      action: '/upload.do',
+      data: { a: 1, b: 2 },
+      headers: {
+        Authorization: 'xxxxxxx',
+      },
+      multiple: true,
+      beforeUpload(file) {
+        console.log('beforeUpload', file.name);
+      },
+      onStart: (file) => {
+        console.log('onStart', file.name);
+        // this.refs.inner.abort(file);
+      },
+      onSuccess(file) {
+        console.log('onSuccess', file);
+      },
+      onProgress(step, file) {
+        console.log('onProgress', Math.round(step.percent), file.name);
+      },
+      onError(err) {
+        console.log('onError', err);
+      },
+    };
+    return {
+      destroyed: false,
+    };
+  }
+
+  destroy() {
+    this.setState({
+      destroyed: true,
+    });
+  }
+
+  render() {
+    if (this.state.destroyed) {
+      return null;
     }
-});
+    return (
+	<div style={{ margin: 100, }}>
+      <h2>File Upload</h2>
+
+      <style>{style}</style>
+
+      <div>
+        <Upload {...this.uploaderProps} ref="inner"><a>Upload</a></Upload>
+      </div>
+
+      <h2>Upload</h2>
+
+      <div
+        style={{
+          height: 200,
+          overflow: 'auto',
+          border: '1px solid red',
+        }}
+      >
+        <div
+          style={{
+            height: 500,
+          }}
+        >
+          <Upload {...this.uploaderProps} component="div" style={{ display: 'inline-block' }}>
+            <a>Upload 2</a></Upload>
+        </div>
+      </div>
+
+      <button onClick={this.destroy}>destroy</button>
+    </div>);
+  }
+}
 
 module.exports = File;

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+var axios = require('axios');
+
 var Formatic = require('formatic');
 
 class CoachApp extends Component {
@@ -280,7 +282,7 @@ var questions = [
 
 	var Form = React.createFactory(Formatic);
 	var res = Form({"fields" : questions, "config" : config,
-                onChange: function (newValue) {
+                onBlur: function (newValue) {
                         var pdata = { "tab" : "c", "questions" : newValue};
                         axios.post('/questions', {pdata})
                         .then(function (response) {

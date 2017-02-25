@@ -636,7 +636,7 @@ class AdminApp extends Component {
 
 	var Form = React.createFactory(Formatic);
 	var res = Form({"fields" : questions, "config" : config,
-		onChange: function (newValue) {
+		onBlur: function (newValue) {
 			var pdata = { "tab" : "a", "questions" : newValue};
 			axios.post('/questions', {pdata})
 			.then(function (response) {
